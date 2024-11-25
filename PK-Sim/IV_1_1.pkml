@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EventGroupBuildingBlock id="DgcCyRvoRE-sd2GiTbRz3A" name="IV_1_1" icon="EventGroup" bbVersion="0" version="16">
+  <Creation createdAt="5250164888353976279" createdBy="zhichengzhang" creationMode="New" origin="PKSim" version="11.2" internalVersion="79" />
+  <Builders>
+    <EventGroupBuilder id="_0MgJwAXPEmkt9-Ib-fQsA" name="Applications" icon="Applications" mode="Logical" containerType="EventGroup">
+      <Children>
+        <EventGroupBuilder id="tSnsQKwLWkadHdIck7cycw" name="IV_1_1" mode="Logical" containerType="EventGroup">
+          <Children>
+            <ApplicationBuilder id="fo1363NMFEeoJNOB3peSyg" name="Application_1" icon="IntravenousBolus" mode="Logical" containerType="Application" eventGroupType="IntravenousBolus" moleculeName="Meloxicam">
+              <Tags>
+                <Tag value="Application" />
+                <Tag value="Application_1" />
+                <Tag value="ApplicationRoot" />
+              </Tags>
+              <Children>
+                <EventBuilder id="QxrpwgZ2ik6yLwClGvlLuw" name="Application_StartEvent" description="Start event for application" oneTime="1" formula="rIPORCDLI0CJ-SbzG5oSgw">
+                  <Tags>
+                    <Tag value="Application" />
+                    <Tag value="Application_1" />
+                  </Tags>
+                  <Assignments>
+                    <EventAssignmentBuilder id="euhjnYUlhk-XAUMdaQp6PQ" name="Assignment_1" useAsValue="1" dimension="Amount" formula="xq2ha7HdyEGkldEh3s1FUw">
+                      <ObjectPath path="0" />
+                    </EventAssignmentBuilder>
+                  </Assignments>
+                </EventBuilder>
+                <Container id="IDXTZ2z9FkOn8ZcY5SoROQ" name="ProtocolSchemaItem" description="Protocol Schema Item" mode="Logical" containerType="Other">
+                  <Tags>
+                    <Tag value="Application" />
+                    <Tag value="Application_1" />
+                  </Tags>
+                  <Children>
+                    <Parameter id="WPnI9oJIZEuWmkCZWrQ6Rg" name="Start time" description="Start time of application" icon="Parameter" persistable="0" isFixedValue="0" dim="Time" quantityType="Parameter" negativeValuesAllowed="1" isDefault="1" value="0" displayUnit="h">
+                      <Info min="0" flag="58" seq="1" ref="0" bb="16" group="88" />
+                    </Parameter>
+                    <Parameter id="sje9tLB-UUa3015SNGvXzg" name="Dose" description="Dose" icon="Parameter" persistable="0" isFixedValue="0" dim="Mass" quantityType="Parameter" negativeValuesAllowed="1" formula="ddbi1DbdXEC3ynFJgZNFeQ" isDefault="1" displayUnit="mg">
+                      <Info min="0" flag="50" seq="2" ref="0" bb="2" group="88" />
+                    </Parameter>
+                    <Parameter id="nuQL94Hkp0mYGm58IEfk5Q" name="DosePerBodySurfaceArea" description="Dose" icon="Parameter" persistable="0" isFixedValue="0" dim="Dose per body surface area" quantityType="Parameter" negativeValuesAllowed="1" isDefault="1" value="0" displayUnit="mg/m²">
+                      <Info min="0" flag="50" seq="2" ref="0" bb="2" group="88" />
+                    </Parameter>
+                    <Parameter id="-0z8nEBbVU-2-oRi8ARWzw" name="DosePerBodyWeight" description="Dose" icon="Parameter" persistable="0" isFixedValue="0" dim="Dose per body weight" quantityType="Parameter" negativeValuesAllowed="1" isDefault="1" value="1E-06" displayUnit="mg/kg">
+                      <Info min="0" flag="58" seq="2" ref="0" bb="16" group="88" />
+                    </Parameter>
+                    <Parameter id="-0Ek7ueK4UWV-3-ndJqdqw" name="DrugMass" description="Drug mass of application" icon="Parameter" persistable="0" isFixedValue="0" dim="Amount" quantityType="Parameter" negativeValuesAllowed="1" formula="vZWmGFHzXUuKjQTZAjQusw" isDefault="1" displayUnit="µmol">
+                      <Tags>
+                        <Tag value="MOLECULE" />
+                      </Tags>
+                      <Info min="0" flag="54" seq="2" ref="0" bb="2" group="88" />
+                    </Parameter>
+                  </Children>
+                </Container>
+                <ApplicationMoleculeBuilder id="zgjikEfjEkuwwzem8A02GA" name="Application_1" formula="fVuMc7bB9kOR1uz3tba7Cw">
+                  <RelativeContainerPath path="1" />
+                </ApplicationMoleculeBuilder>
+              </Children>
+              <SourceCriteria operator="And">
+                <DescriptorConditions>
+                  <MatchTagCondition tag="Applications" />
+                </DescriptorConditions>
+              </SourceCriteria>
+            </ApplicationBuilder>
+          </Children>
+          <SourceCriteria operator="And" />
+        </EventGroupBuilder>
+      </Children>
+      <SourceCriteria operator="And">
+        <DescriptorConditions>
+          <MatchTagCondition tag="RootContainer" />
+        </DescriptorConditions>
+      </SourceCriteria>
+    </EventGroupBuilder>
+  </Builders>
+  <FormulaCache>
+    <Formulas>
+      <Formula id="xq2ha7HdyEGkldEh3s1FUw" name="IV_Bolus" dim="Amount" formula="M + DrugMass">
+        <Paths>
+          <Path path="0" as="2" dim="3" />
+          <Path path="4" as="5" dim="3" />
+        </Paths>
+      </Formula>
+      <Formula id="rIPORCDLI0CJ-SbzG5oSgw" name="AppStartEventCondition" formula="Time=StartTime">
+        <Paths>
+          <Path path="6" as="7" dim="8" />
+          <TimePath />
+        </Paths>
+      </Formula>
+      <Formula id="ddbi1DbdXEC3ynFJgZNFeQ" name="PARAM_Application_DoseFromDosePerBodyWeight" dim="Mass" formula="DosePerBodyWeight * BW">
+        <Paths>
+          <Path path="9" as="10" dim="11" />
+          <Path path="12" as="13" dim="14" />
+        </Paths>
+      </Formula>
+      <Formula id="vZWmGFHzXUuKjQTZAjQusw" name="PARAM_Application_DrugMass" dim="Amount" formula="Dose / MW">
+        <Paths>
+          <Path path="15" as="16" dim="14" />
+          <Path path="17" as="18" dim="19" />
+        </Paths>
+      </Formula>
+      <Formula id="fVuMc7bB9kOR1uz3tba7Cw" name="DrugMass" dim="Amount" formula="DrugMass">
+        <Paths>
+          <Path path="20" as="5" dim="3" />
+        </Paths>
+      </Formula>
+    </Formulas>
+    <StringMap>
+      <Map s="Organism|VenousBlood|Plasma|MOLECULE" id="0" />
+      <Map s="..|Application_1" id="1" />
+      <Map s="M" id="2" />
+      <Map s="Amount" id="3" />
+      <Map s="..|..|ProtocolSchemaItem|DrugMass" id="4" />
+      <Map s="DrugMass" id="5" />
+      <Map s="..|ProtocolSchemaItem|Start time" id="6" />
+      <Map s="StartTime" id="7" />
+      <Map s="Time" id="8" />
+      <Map s="..|DosePerBodyWeight" id="9" />
+      <Map s="DosePerBodyWeight" id="10" />
+      <Map s="Dose per body weight" id="11" />
+      <Map s="Organism|Weight" id="12" />
+      <Map s="BW" id="13" />
+      <Map s="Mass" id="14" />
+      <Map s="..|Dose" id="15" />
+      <Map s="Dose" id="16" />
+      <Map s="MOLECULE|Molecular weight" id="17" />
+      <Map s="MW" id="18" />
+      <Map s="Molecular weight" id="19" />
+      <Map s="..|ProtocolSchemaItem|DrugMass" id="20" />
+    </StringMap>
+  </FormulaCache>
+</EventGroupBuildingBlock>
